@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#f7f7f0">
+  <meta name="description"
+        content="WildLens AI — discover the natural world through your camera.">
+
+  <title>WildLens AI — Find wonder outside</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="WildLens home">
+      <span class="brand-icon">✳</span>
+      <span>WildLens<span class="brand-ai"> AI</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#identify">Explore</a>
+      <a href="#journal">My journal</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <button id="theme-toggle" class="icon-button" type="button"
+            aria-label="Toggle dark mode" title="Toggle dark mode">
+      <span id="theme-icon">☾</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> YOUR POCKET NATURE COMPANION</div>
+
+        <h1>There is more<br>to the world than <em>we notice.</em></h1>
+
+        <p class="hero-description">
+          Take a closer look at the little things. Identify nature,
+          collect discoveries, and make room for a little wonder.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-dark" href="#identify">
+            Start exploring <span aria-hidden="true">↗</span>
+          </a>
+          <span class="hero-note">Made for curious minds and muddy shoes.</span>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <strong>01</strong>
+            <span>Notice</span>
+          </div>
+          <div>
+            <strong>02</strong>
+            <span>Discover</span>
+          </div>
+          <div>
+            <strong>03</strong>
+            <span>Remember</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img
+          class="hero-photo"
+          src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=85"
+          alt="Deer standing in a peaceful forest">
+
+        <div class="photo-label">
+          <span class="photo-label-icon">✳</span>
+          <div>
+            <strong>Take the scenic route.</strong>
+            <span>The world is full of small wonders.</span>
+          </div>
+        </div>
+
+        <div class="floating-tag">
+          <span>✿</span> A little more outdoors
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-strip" id="about">
+      <span class="intro-number">A FIELD GUIDE FOR EVERYDAY LIFE</span>
+      <p>From the tiniest leaf to a bird in the treetops, curiosity starts with looking.</p>
+      <span class="intro-flower">❋</span>
+    </section>
+
+    <section class="explorer-section" id="identify">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">THE DISCOVERY DESK</div>
+          <h2>What did you <em>find?</em></h2>
+        </div>
+        <p>One photograph. A whole new story.</p>
+      </div>
+
+      <div class="explorer-grid">
+        <div class="upload-card">
+          <div class="card-topline">
+            <span class="step-number">01 / UPLOAD</span>
+            <span class="tiny-leaf">✳</span>
+          </div>
+
+          <label for="photo-input" class="upload-zone" id="dropzone">
+            <img id="preview-image" alt="Selected nature photo preview" hidden>
+            <div id="upload-placeholder" class="upload-placeholder">
+              <span class="upload-icon">↥</span>
+              <strong>Drop your discovery here</strong>
+              <span>or browse your photographs</span>
+              <span class="file-hint">JPG, PNG, WEBP · Up to 10 MB</span>
+            </div>
+          </label>
+
+          <input id="photo-input" type="file" accept="image/*" hidden>
+
+          <div class="upload-actions">
+            <label for="photo-input" class="button button-light">
+              Choose a photo <span>↗</span>
+            </label>
+            <button id="remove-photo" class="text-button" type="button" hidden>
+              Remove photo
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="card-topline">
+            <span class="step-number">02 / CONNECT</span>
+            <span class="connection-label"><span class="status-dot"></span> CLOUD AI</span>
+          </div>
+
+          <label class="field-label" for="ollama-key">Ollama Cloud API key</label>
+          <input id="ollama-key" class="text-input" type="password"
+                 autocomplete="off" placeholder="Paste your API key">
+
+          <label class="field-label" for="ollama-model">Vision model</label>
+          <input id="ollama-model" class="text-input" type="text"
+                 value="gemma3:27b-cloud"
+                 placeholder="Enter an available vision model">
+
+          <p class="field-help">
+            Your key is kept in this page's memory, not saved in browser storage.
+          </p>
+
+          <button id="identify-button" class="button button-dark button-wide"
+                  type="button" disabled>
+            <span>✳</span> Identify with AI <span class="button-arrow">↗</span>
+          </button>
+
+          <p id="status" class="status-message" role="status" aria-live="polite">
+            Choose a photograph to begin.
+          </p>
+        </div>
+
+        <div class="result-card">
+          <div class="card-topline">
+            <span class="step-number">03 / DISCOVER</span>
+            <span class="result-sparkle">✳</span>
+          </div>
+
+          <div id="empty-result" class="empty-result">
+            <div class="illustration">
+              <span class="illustration-sun">☼</span>
+              <span class="illustration-leaf leaf-one">❧</span>
+              <span class="illustration-leaf leaf-two">❧</span>
+              <span class="illustration-ground"></span>
+            </div>
+            <h3>Your next discovery<br>is waiting out there.</h3>
+            <p>Upload a photo and let your AI field companion help you explore it.</p>
+            <div class="result-footnote"><span>✳</span> STAY CURIOUS. LOOK CLOSER.</div>
+          </div>
+
+          <div id="result" class="result-content" hidden>
+            <div class="result-kicker"><span class="status-dot"></span> YOUR FIELD NOTES</div>
+            <h3 id="result-title">Your discovery</h3>
+            <div id="prediction" class="prediction"></div>
+
+            <p class="disclaimer">
+              AI identifications can be mistaken. Use the visible clues
+              as a starting point, not a confirmed species identification.
+            </p>
+
+            <label class="field-label" for="observation-note">
+              Add your own field note
+            </label>
+            <textarea id="observation-note" class="text-input note-input"
+                      rows="3" placeholder="Where were you? What caught your eye?"></textarea>
+
+            <button id="save-button" class="button button-dark button-wide"
+                    type="button">
+              Save to my journal <span class="button-arrow">↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="missions-section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">A REASON TO STEP OUTSIDE</div>
+          <h2>Today's little <em>missions.</em></h2>
+        </div>
+        <span class="mission-aside">Small steps. Fresh perspective.</span>
+      </div>
+
+      <div class="mission-grid">
+        <article class="mission-card mission-sage">
+          <span class="mission-index">MISSION 01</span>
+          <span class="mission-symbol">❋</span>
+          <h3>Find a tiny forest.</h3>
+          <p>Look closely at a patch of moss, a fallen leaf, or the life beneath a tree.</p>
+          <span class="mission-time">5 MINUTES · LOOK CLOSER</span>
+        </article>
+
+        <article class="mission-card mission-sand">
+          <span class="mission-index">MISSION 02</span>
+          <span class="mission-symbol">☼</span>
+          <h3>Follow the light.</h3>
+          <p>Notice how sunlight changes the colours and shadows around you.</p>
+          <span class="mission-time">10 MINUTES · SLOW DOWN</span>
+        </article>
+
+        <article class="mission-card mission-mist">
+          <span class="mission-index">MISSION 03</span>
+          <span class="mission-symbol">♧</span>
+          <h3>Meet your neighbours.</h3>
+          <p>Observe a bird or insect from a respectful distance without disturbing it.</p>
+          <span class="mission-time">5 MINUTES · BE CURIOUS</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="journal-section" id="journal">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR PERSONAL COLLECTION</div>
+          <h2>A journal of <em>wonder.</em></h2>
+        </div>
+        <span id="journal-count" class="journal-count">0 DISCOVERIES</span>
+      </div>
+
+      <div id="journal-list" class="journal-list">
+        <div class="journal-empty">
+          <span>✳</span>
+          <p>Your first discovery is still out there.</p>
+          <a href="#identify">Find something to remember ↗</a>
+        </div>
+      </div>
+
+      <button id="clear-journal" class="text-button clear-button"
+              type="button" hidden>
+        Clear journal
+      </button>
+    </section>
+
+    <section class="closing-banner">
+      <div class="closing-flower">✳</div>
+      <div>
+        <div class="eyebrow">A GENTLE REMINDER</div>
+        <h2>The best things aren't always<br>on a screen. <em>Go find them.</em></h2>
+      </div>
+      <a class="button button-light" href="#identify">Explore again ↗</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#"><span class="brand-icon">✳</span> WildLens<span class="brand-ai"> AI</span></a>
+    <p>Made for curious minds and muddy shoes.</p>
+    <a href="#about">A little more about us ↑</a>
+  </footer>
+</body>
+</html>
